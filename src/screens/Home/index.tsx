@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import Participant from '../components/Participant';
 
 
 
 export default function Home(){
+
+  const [participants, setParticipants] = useState(['Rodriro', 'Diego', 'Mayk']);
+    
    
 
     function handleParticipantsAdd() {
        console.log('Adicionar participante')
     }
+
+    function handleParticipantsDelete(name:string) {
+      console.log('Remover participante', name)
+    }
+
   return (
       <View style={styles.container}>
         <Text style={styles.eventName}>Nome do Evento</Text>
@@ -23,10 +31,12 @@ export default function Home(){
                 <Text style={styles.buttonText}>+</Text>    
             </TouchableOpacity>
         </View>
-
-        <Participant />
-        <Participant />
-       
+        <ScrollView >
+        {participants.map((participant) => (
+          <Participant key={participant} name={participant} onRemove={() => handleParticipantsDelete(participant)}/>
+        ))}
+        
+        </ScrollView>
       </View>
       
     );

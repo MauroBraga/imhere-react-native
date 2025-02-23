@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
-export default function Participant(){
+type Porps = {
+    name: string;
+    onRemove: () => void;
+}
 
-    function handleParticipantsDelete() {
-        console.log('Adicionar participante')
-    }
+export default function Participant({name,onRemove}: Porps){
+    
     return (
         <View style={styles.container}>
-            <Text style={styles.name}>Participant</Text>
-            <TouchableOpacity style={styles.button} onPress={handleParticipantsDelete}>
+            <Text style={styles.name}>{name}</Text>
+            <TouchableOpacity style={styles.button} onPress={onRemove}>
                             <Text style={styles.buttonText}>-</Text>    
                         </TouchableOpacity>  
         </View>
